@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://ba0e0vwmh6cgv"]
+
+[ext_resource type="Script" uid="uid://ej5wraniwwaj" path="res://scripts/Mob.cs" id="1_ex06h"]
+[ext_resource type="PackedScene" uid="uid://dvqrvv8puk6oe" path="res://assets/characterModels/character-j.glb" id="1_sup6k"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ex06h"]
+height = 1.93457
+
+[node name="Mob" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 0
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+script = ExtResource("1_ex06h")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="character-j2" parent="Pivot" instance=ExtResource("1_sup6k")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 1.4, 0, 0, 0, 2, 0, 1.3542, 0)
+shape = SubResource("CylinderShape3D_ex06h")
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 1.4, 0)
+aabb = AABB(-0.56853, -1, -0.337091, 1.13706, 2, 0.674182)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]

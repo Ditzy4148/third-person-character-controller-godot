@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://xwa52dd0jlpf"]
+
+[ext_resource type="Script" uid="uid://cfmmg6uf1oo4b" path="res://scripts/leo_pixel_camera.gd" id="1_ttfx5"]
+[ext_resource type="Shader" uid="uid://bs2oq8sbshfiq" path="res://shaders/leopeltol_outline.gdshader" id="2_2a7mi"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ttfx5"]
+flip_faces = true
+size = Vector2(10, 10)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2a7mi"]
+render_priority = 0
+shader = ExtResource("2_2a7mi")
+shader_parameter/shadows_enabled = true
+shader_parameter/highlights_enabled = true
+shader_parameter/shadow_strength = 0.4
+shader_parameter/highlight_strength = 0.1
+shader_parameter/highlight_color = Color(1, 1, 1, 1)
+shader_parameter/shadow_color = Color(0, 0, 0, 1)
+
+[node name="LeoPixelCamera" type="Camera3D"]
+projection = 1
+current = true
+size = 4.685
+near = 0.001
+script = ExtResource("1_ttfx5")
+
+[node name="Postprocess" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.873)
+mesh = SubResource("PlaneMesh_ttfx5")
+surface_material_override/0 = SubResource("ShaderMaterial_2a7mi")

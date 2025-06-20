@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://11itsy8grb3a"]
+
+[node name="CharacterController" type="Node3D"]
